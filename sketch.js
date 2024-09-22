@@ -2,6 +2,9 @@ let d = 120; //circle diameter
 let deg = 58;
 let outline = true;
 
+let j;
+let x, y, velX, velY;
+
 let gui;
 let diameterSlider, degSlider, outlineCheckbox;
 
@@ -12,6 +15,13 @@ function setup() {
 
   gui = createGui();
   gui.setRounding(1);
+
+  j = createJoystick("Joystick", 10, 210, 175, 175, -1, 1, 1, -1);
+  x     = 300;
+  y     = 100;
+  velX  = 0;
+  velY  = 0;
+
 
   diameterSlider = createSlider("Diameter", 200, 10, 100, 20, 10, 300);
   diameterSlider.onChange = diameterSliderChange;
@@ -29,13 +39,23 @@ function draw() {
   background(125);
   drawGui();
 
+  if (j.isChanged) {
+    // Print a message when Slider 1 is changed
+    // that displays its value.
+    print(j.label + " = {" + j.valX + ", " + j.valY + "}");
+  }
+  
+  // Use Joystick's output to change velocity
+  velX += j.valX;
+  velY += j.valY;  
+
 if (outlineCheckbox.val) {
   stroke("black");
 } else {
   noStroke();
 }
 
-  circle(100,200,d);
+  circle(x + velX, y + velY,x + velX, y + velY,d);
 
   push();
   translate(300, 200);
