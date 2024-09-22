@@ -11,9 +11,16 @@ function setup() {
   strokeWeight(10);
 
   gui = createGui();
+  gui.setRounding(1);
+
   diameterSlider = createSlider("Diameter", 200, 10, 100, 20, 10, 100);
   diameterSlider.onChange = diameterSliderChange;
   degSlider = createSlider("Rotation", 200, 40, 100, 20, 0, 180);
+  diameterSlider.setStyle({
+    fillBg:color("red"),
+    strokeWeight: 4
+  })
+  degSlider.isInteger = true;
   degSlider.val = 23;
   outlineCheckbox = createCheckbox("Outline", 340, 10, 20, 20, true);
 }
