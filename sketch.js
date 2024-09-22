@@ -13,7 +13,7 @@ function setup() {
   gui = createGui();
   gui.setRounding(1);
 
-  diameterSlider = createSlider("Diameter", 200, 10, 100, 20, 10, 100);
+  diameterSlider = createSlider("Diameter", 200, 10, 100, 20, 10, 300);
   diameterSlider.onChange = diameterSliderChange;
   degSlider = createSlider("Rotation", 200, 40, 100, 20, 0, 180);
   diameterSlider.setStyle({
@@ -38,10 +38,10 @@ if (outlineCheckbox.val) {
   circle(100,200,d);
 
   push();
-  translate(200, 200);
+  translate(300, 200);
   deg = degSlider.val;
   rotate(radians(deg));
-  rect(0,0,60,60);
+  rect(0,0,degSlider.val,degSlider.val);
   pop();
 
   noStroke();
